@@ -63,8 +63,9 @@ function createEmployee (event){
     },
     body: JSON.stringify(employeeData)
   })
-    .catch(error => console.log(error));
-  fetchEmployees();
+  .then(() => fetchEmployees())
+  .catch(error => console.log(error));
+  //fetchEmployees();
 
 }
 
@@ -85,9 +86,10 @@ function deleteEmployee (event){
     method: 'DELETE',
     
   })
-    .catch(error => console.log(error));
+  .then(() => fetchEmployees())
+  .catch(error => console.log(error));
 
-fetchEmployees();
+
   
 
 }

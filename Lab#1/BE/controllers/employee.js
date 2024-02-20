@@ -8,11 +8,13 @@ exports.getEmployees = async (req, res, next) => {
 
 // TODO
 exports.deleteEmployee = async (req, res, next) => {
+  
   const id = req.params.id;
-  console.log(id);
-  res.status(204);
+  //console.log(id);
+  
   const index = employee.findIndex(employee => employee.id === id);
-  employee.splice(index);
+  employee.splice(index, 1);
+  res.sendStatus(204);
 };
 
 // TODO
@@ -22,10 +24,10 @@ exports.createEmployee = async (req, res, next) => {
   
   const employeeExist = employee.find(employee => employee.id === id);
   if(employeeExist){
-    res.status(400).send({message: "ERROR A User with the same ID already exists!"});
+    res.sendStatus(400).send({message: "ERROR A User with the same ID already exists!"});
 
   }else{
   employee.push({id, name});
-  res.status(201);
+  res.sendStatus(201);
   }
 };
